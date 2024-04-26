@@ -5,6 +5,7 @@ import Home from "./pages/Home.jsx";
 import PageNotFound from "./pages/PageNotFound.jsx";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { SongIdProvider } from "./components/SongIdContext.jsx";
+import Info from "./pages/Info.jsx";
 
 const queryClient = new QueryClient();
 
@@ -19,6 +20,7 @@ function App() {
               <Route path="/" element={<AppLayout />}>
                 <Route index element={<Navigate replace to="/home" />} />
                 <Route path="/home" element={<Home />} />
+                <Route path="/info" element={<Info />} />
               </Route>
               <Route path="*" element={<PageNotFound />} />
             </Routes>
