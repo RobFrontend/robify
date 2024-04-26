@@ -12,21 +12,21 @@ const queryClient = new QueryClient();
 function App() {
   return (
     <>
-      <SongIdProvider>
-        <GlobalStyles />
-        <QueryClientProvider client={queryClient}>
+      <QueryClientProvider client={queryClient}>
+        <SongIdProvider>
+          <GlobalStyles />
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<AppLayout />}>
-                <Route index element={<Navigate replace to="/home" />} />
-                <Route path="/home" element={<Home />} />
-                <Route path="/info" element={<Info />} />
+                <Route index element={<Navigate replace to="home" />} />
+                <Route path="home" element={<Home />} />
+                <Route path="info" element={<Info />} />
               </Route>
               <Route path="*" element={<PageNotFound />} />
             </Routes>
           </BrowserRouter>
-        </QueryClientProvider>
-      </SongIdProvider>
+        </SongIdProvider>
+      </QueryClientProvider>
     </>
   );
 }
