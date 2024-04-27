@@ -8,9 +8,9 @@ function AppLayout() {
   return (
     <Main>
       <Header />
-      <CurrentPage>
-        <Outlet />
-      </CurrentPage>
+      {/* <CurrentPage> */}
+      <Outlet />
+      {/* </CurrentPage> */}
       <Player />
     </Main>
   );
