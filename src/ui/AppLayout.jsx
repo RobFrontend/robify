@@ -3,14 +3,15 @@ import Player from "./Player";
 import Main from "./Main";
 import CurrentPage from "./CurrentPage";
 import Header from "./Header";
+import Home from "../pages/Home";
 
 function AppLayout() {
   return (
     <Main>
       <Header />
-      {/* <CurrentPage> */}
-      <Outlet />
-      {/* </CurrentPage> */}
+      <CurrentPage>
+        <Home />
+      </CurrentPage>
       <Player />
     </Main>
   );
