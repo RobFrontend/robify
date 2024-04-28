@@ -42,7 +42,7 @@ function Player() {
   );
 }
 
-function SongPlaying({ song }) {
+function SongPlaying({ song, index }) {
   return (
     <>
       <p>{song.title}</p>

@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { useSongId } from "../SongIdContext";
 
 const SongBox = styled.div`
+  cursor: pointer;
   display: grid;
   grid-template-columns: 10fr 90fr;
   align-items: center;
@@ -39,9 +40,8 @@ function SongsList({ song, index }) {
 
       <div>
         <h3>{song.title}</h3>
-        <p>{song.info}</p>
+        <p>{song.info.slice(0, 30)}...</p>
       </div>
-      {/* <audio controls src={song.audio} /> */}
     </SongBox>
   );
 }

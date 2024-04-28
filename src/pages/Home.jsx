@@ -2,7 +2,6 @@ import styled from "styled-components";
 import CenterHome from "../components/home/CenterHome";
 import LeftHome from "../components/home/LeftHome";
 import RightHome from "../components/home/RightHome";
-import { useSongs } from "../queryAPI/useSongs";
 
 const StyledHome = styled.div`
   display: grid;
@@ -12,17 +11,10 @@ const StyledHome = styled.div`
 `;
 
 function Home() {
-  const { isPending, songs } = useSongs();
-  if (isPending)
-    return (
-      <StyledHome>
-        <h1>Loading</h1>
-      </StyledHome>
-    );
   return (
     <StyledHome>
       <LeftHome />
-      <CenterHome songs={songs} />
+      <CenterHome />
       <RightHome />
     </StyledHome>
   );

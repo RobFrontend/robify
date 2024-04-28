@@ -15,7 +15,7 @@ function RightHome() {
   if (isPending) return <h2>Loading...</h2>;
   return (
     <CompBG>
-      <h1>About song</h1>
+      <h1>About</h1>
       {songs
         .filter((song) => song.id === songId.songId)
         .map((songInfo) => (
