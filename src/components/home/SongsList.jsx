@@ -27,14 +27,15 @@ const PlayButton = styled.button`
   }
 `;
 
-function SongsList({ song }) {
+function SongsList({ song, index }) {
   const { isId } = useSongId();
   function handleId() {
     isId(song.id);
   }
   return (
     <SongBox onClick={handleId}>
-      <PlayButton>▶</PlayButton>
+      {/* <PlayButton>▶ {index + 1}</PlayButton> */}
+      <h2>{index + 1}</h2>
 
       <div>
         <h3>{song.title}</h3>

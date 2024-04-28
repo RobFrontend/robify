@@ -12,8 +12,8 @@ function CenterHome({ songs }) {
     <CompBG>
       <h1>Playlist</h1>
       <StyledList>
-        {songs.map((song) => (
-          <SongsList song={song} key={song.id} />
+        {songs.map((song, index) => (
+          <SongsList song={song} index={index} key={song.id} />
         ))}
       </StyledList>
     </CompBG>
