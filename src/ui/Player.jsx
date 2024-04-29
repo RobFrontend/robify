@@ -46,7 +46,12 @@ function SongPlaying({ song, index }) {
   return (
     <>
       <p>{song.title}</p>
-      <Audio controls autoPlay src={song.audio} />
+      <Audio
+        controlsList="nodownload noplaybackrate"
+        controls
+        autoPlay
+        src={song.audio}
+      />
     </>
   );
 }

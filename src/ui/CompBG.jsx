@@ -4,7 +4,7 @@ const CompBG = styled.div`
   background-color: var(--component-background-color);
   padding: 3.2rem;
   border-radius: 10px;
-  overflow-y: scroll;
+  overflow-y: auto;
   height: 80vh;
 `;
 
