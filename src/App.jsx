@@ -4,6 +4,7 @@ import AppLayout from "./ui/AppLayout.jsx";
 import Home from "./pages/Home.jsx";
 import PageNotFound from "./pages/PageNotFound.jsx";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { SongIdProvider } from "./components/SongIdContext.jsx";
 import Info from "./pages/Info.jsx";
 
@@ -18,8 +19,9 @@ const queryClient = new QueryClient({
 function App() {
   return (
     <>
-      <QueryClientProvider client={queryClient}>
-        <SongIdProvider>
+      <SongIdProvider>
+        <QueryClientProvider client={queryClient}>
+          <ReactQueryDevtools initialIsOpen={false} />
           <GlobalStyles />
           <BrowserRouter>
             <Routes>
@@ -31,8 +33,8 @@ function App() {
               <Route path="*" element={<PageNotFound />} />
             </Routes>
           </BrowserRouter>
-        </SongIdProvider>
-      </QueryClientProvider>
+        </QueryClientProvider>
+      </SongIdProvider>
     </>
   );
 }
