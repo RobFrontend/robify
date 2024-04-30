@@ -18,11 +18,10 @@ const queryClient = new QueryClient({
 
 function App() {
   return (
-    // <SongIdProvider>
     <QueryClientProvider client={queryClient}>
       <ReactQueryDevtools initialIsOpen={false} />
       <GlobalStyles />
-      <BrowserRouter>
+      <BrowserRouter basename="/home">
         <Routes>
           <Route path="/" element={<AppLayout />}>
             <Route index element={<Navigate replace to="home" />} />
@@ -33,7 +32,6 @@ function App() {
         </Routes>
       </BrowserRouter>
     </QueryClientProvider>
-    // </SongIdProvider>
   );
 }
 
