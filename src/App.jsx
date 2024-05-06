@@ -5,7 +5,7 @@ import Home from "./pages/Home.jsx";
 import PageNotFound from "./pages/PageNotFound.jsx";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { SongIdProvider } from "./components/SongIdContext.jsx";
+
 import Info from "./pages/Info.jsx";
 
 const queryClient = new QueryClient({

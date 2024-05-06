@@ -9,6 +9,7 @@ const SongBox = styled.div`
   gap: 3.2rem;
   padding: 1.2rem;
   transition: all 0.15s;
+  border-radius: 5px;
   &:hover {
     background-color: var(--component-hover-color);
   }
@@ -22,20 +23,7 @@ const NumList = styled.div`
 
 const IMG = styled.img`
   width: 100%;
-`;
-
-const PlayButton = styled.button`
-  cursor: pointer;
-  background: none;
-  color: var(--font-color);
-  justify-self: center;
-  border: 1px solid var(--font-color);
-  border-radius: 100px;
-  padding: 1.8rem;
-  transition: all 0.3s;
-  &:hover {
-    background-color: var(--player-backgorund-color);
-  }
+  border-radius: 5px;
 `;
 
 function SongsList({ song, index }) {
@@ -45,7 +33,6 @@ function SongsList({ song, index }) {
   }
   return (
     <SongBox onClick={handleId}>
-      {/* <PlayButton>▶ {index + 1}</PlayButton> */}
       <NumList>
         <h2>{index + 1}</h2>
         <IMG src={song.image} alt="screenshot of original track or author" />

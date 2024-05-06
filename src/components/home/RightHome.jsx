@@ -12,6 +12,7 @@ const StyledInfo = styled.div`
 
 const IMG = styled.img`
   width: 100%;
+  border-radius: 5px;
 `;
 
 const StyledLink = styled(Link)`
@@ -21,6 +22,13 @@ const StyledLink = styled(Link)`
   color: inherit;
   padding: 0.4rem;
   border-bottom: 1px solid var(--font-color);
+`;
+
+const Frame = styled.div`
+  border-radius: 5px;
+  opacity: 0.8;
+  margin: 1.2rem 0;
+  overflow: hidden;
 `;
 
 function RightHome() {
@@ -72,6 +80,23 @@ function SongInfo({ song }) {
             Link to my version
           </StyledLink>
         </div>
+      )}
+      {song.frameYt && (
+        <Frame>
+          <iframe
+            width="100%"
+            height="100%"
+            // src={
+            //   "https://www.youtube.com/embed/6DiFOz9oN8M?si=JdvVVyhQghBWjf4M"
+            // }
+            src={song.frameYt}
+            title="YouTube video player"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerPolicy="strict-origin-when-cross-origin"
+            allowFullScreen
+          ></iframe>
+        </Frame>
       )}
     </StyledInfo>
   );
