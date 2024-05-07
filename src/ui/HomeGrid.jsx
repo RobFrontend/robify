@@ -4,12 +4,13 @@ import { usePlayList } from "../components/PlayListContext";
 import { useSearch } from "../components/SearchContext";
 
 const HomeInfo = styled.div`
-  display: grid;
-  grid-template-columns: 50fr 50fr;
+  display: flex;
+
   gap: 1.8rem;
   padding: 1.8rem;
   margin-bottom: 1.8rem;
   @media screen and (max-width: 65em) {
+    display: grid;
     grid-template-columns: 1fr;
   }
 `;
