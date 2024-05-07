@@ -1,11 +1,17 @@
 import styled from "styled-components";
 import { useSongs } from "../queryAPI/useSongs";
+import { usePlayList } from "../components/PlayListContext";
+import { useSearch } from "../components/SearchContext";
 
 const HomeInfo = styled.div`
-  display: flex;
+  display: grid;
+  grid-template-columns: 50fr 50fr;
   gap: 1.8rem;
   padding: 1.8rem;
   margin-bottom: 1.8rem;
+  @media screen and (max-width: 65em) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 const StyledHomeGrid = styled.div`
@@ -31,24 +37,57 @@ const PlaylistInfo = styled.div`
   flex-direction: column;
   gap: 0.6rem;
   padding: 1.2rem;
+  @media screen and (max-width: 65em) {
+    grid-row: 1;
+  }
 `;
 
-function HomeGrid() {
-  const { songs, isPending } = useSongs();
+function HomeGrid({ songs }) {
   const tracksNumber = songs.map((song, index) => index);
-
-  if (isPending) return <h1>Loading..</h1>;
+  const { category } = usePlayList();
+  const { songSearch } = useSearch();
+  const cat = category.category;
   return (
     <HomeInfo>
       <StyledHomeGrid>
-        {songs.slice(0, 4).map((song) => (
-          <SongImages song={song} key={song.id} />
-        ))}
+        {songs && songs.length > 3 ? (
+          songs
+            .slice(0, 4)
+            .map((song) => <SongImages song={song} key={song.id} />)
+        ) : songs.length === 0 ? (
+          <SongZero />
+        ) : (
+          <>
+            <SongImageOne songs={songs} />
+            {songs.length > 1 ? (
+              <SongImageTwo songs={songs} />
+            ) : (
+              <SongImageOne songs={songs} />
+            )}
+            {songs.length > 1 ? (
+              <SongImageTwo songs={songs} />
+            ) : (
+              <SongImageOne songs={songs} />
+            )}
+            <SongImageOne songs={songs} />
+          </>
+        )}
       </StyledHomeGrid>
       <PlaylistInfo>
         <p>Public playlist</p>
-        <h3>Main Playlist</h3>
-        <p>{tracksNumber.at(-1) + 1} Tracks</p>
+        {songSearch !== "" ? (
+          <h3>Searched songs</h3>
+        ) : (
+          <h3>
+            {cat === "own"
+              ? "Own Beats"
+              : cat === "remake"
+              ? "Remakes"
+              : "Main"}{" "}
+            Playlist
+          </h3>
+        )}
+        <p>{songs.length > 0 ? tracksNumber.at(-1) + 1 : "The is no"} Tracks</p>
       </PlaylistInfo>
     </HomeInfo>
   );
@@ -56,6 +95,18 @@ function HomeGrid() {
 
 function SongImages({ song }) {
   return <IMG src={song.image} alt="Album Screenshot" />;
+}
+
+function SongImageOne({ songs }) {
+  return <IMG src={songs[0].image} alt="Album Screenshot" />;
+}
+function SongImageTwo({ songs }) {
+  return <IMG src={songs[1].image} alt="Album Screenshot" />;
+}
+
+function SongZero() {
+  // return <IMG src={songs.image} alt="Album Screenshot" />;
+  return <p>No songs...</p>;
 }
 
 export default HomeGrid;

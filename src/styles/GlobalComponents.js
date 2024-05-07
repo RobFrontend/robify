@@ -67,6 +67,17 @@ p{
     border-radius: 10px;
     border: 3px none var(--component-background-color);
   }
+
+  @media screen and (max-width: 90em) {
+    html{
+      font-size: 56.25%;
+    }
+  }
+  @media screen and (max-width: 50em) {
+    html{
+      font-size: 50%;
+    }
+  }
 `;
 
 export default GlobalStyles;

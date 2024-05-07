@@ -4,6 +4,7 @@ import SongsList from "./SongsList";
 import { useSongs } from "../../queryAPI/useSongs";
 import HomeGrid from "../../ui/HomeGrid";
 import { usePlayList } from "../PlayListContext";
+import { useSearch } from "../SearchContext";
 
 const StyledList = styled.div`
   display: grid;
@@ -14,8 +15,15 @@ const StyledList = styled.div`
 function CenterHome() {
   let { isPending, songs } = useSongs();
   const { category } = usePlayList();
+  const { songSearch } = useSearch();
 
   let cat = category.category;
+
+  if (songSearch !== "") {
+    songs = songs.filter((song) =>
+      song.title.toLowerCase().trim().includes(songSearch.toLowerCase().trim())
+    );
+  }
 
   if (cat === "remake") {
     songs = songs.filter((song) => song.remake === true);
@@ -32,7 +40,7 @@ function CenterHome() {
     );
   return (
     <CompBG>
-      <HomeGrid />
+      <HomeGrid songs={songs} />
       <h1>Playlist</h1>
       <StyledList>
         {songs.map((song, index) => (
