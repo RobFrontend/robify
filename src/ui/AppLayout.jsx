@@ -4,13 +4,16 @@ import Main from "./Main";
 import CurrentPage from "./CurrentPage";
 import Header from "./Header";
 import Home from "../pages/Home";
+import { Fade } from "react-awesome-reveal";
 
 function AppLayout() {
   return (
     <Main>
       <Header />
       <CurrentPage>
-        <Home />
+        <Fade triggerOnce>
+          <Home />
+        </Fade>
       </CurrentPage>
       <Player />
     </Main>

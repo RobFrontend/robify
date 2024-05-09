@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { useSongs } from "../queryAPI/useSongs";
 import { useSongId } from "../components/SongIdContext";
+import { Fade } from "react-awesome-reveal";
 
 const StyledPlayer = styled.div`
   min-height: 10vh;
@@ -30,15 +31,19 @@ function Player() {
   if (isPending) return <h3>Loading</h3>;
 
   return (
-    <StyledPlayer>
-      <PlayerBox>
-        {songs
-          .filter((song) => song.id === songId.songId)
-          .map((filteredSong) => (
-            <SongPlaying song={filteredSong} key={filteredSong.id} />
-          ))}
-      </PlayerBox>
-    </StyledPlayer>
+    <Fade delay={500} triggerOnce>
+      <StyledPlayer>
+        <Fade direction="up" triggerOnce>
+          <PlayerBox>
+            {songs
+              .filter((song) => song.id === songId.songId)
+              .map((filteredSong) => (
+                <SongPlaying song={filteredSong} key={filteredSong.id} />
+              ))}
+          </PlayerBox>
+        </Fade>
+      </StyledPlayer>
+    </Fade>
   );
 }
 

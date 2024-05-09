@@ -3,6 +3,7 @@ import CenterHome from "../components/home/CenterHome";
 import LeftHome from "../components/home/LeftHome";
 import RightHome from "../components/home/RightHome";
 import { useEffect, useState } from "react";
+import { Fade } from "react-awesome-reveal";
 
 const StyledHome = styled.div`
   position: relative;
@@ -98,14 +99,16 @@ function Home() {
   return (
     <StyledHome>
       <OpenLeft onClick={() => setLeftOpen(!leftOpen)}>
-        {leftOpen ? "Close Search" : "Open Search"}
+        <Fade delay={500}>{leftOpen ? "Close Search" : "Open Search"}</Fade>
       </OpenLeft>
       <OpenRight onClick={() => setRightOpen(!rightOpen)}>
-        {rightOpen ? "Close Info" : "Open Info"}
+        <Fade delay={500}>{rightOpen ? "Close Info" : "Open Info"}</Fade>
       </OpenRight>
 
       <StyledLeft style={leftOpen ? { display: "block" } : { display: "none" }}>
-        <LeftHome />
+        <Fade direction="left">
+          <LeftHome />
+        </Fade>
       </StyledLeft>
 
       <CenterHome />
@@ -113,7 +116,9 @@ function Home() {
       <StyledRight
         style={rightOpen ? { display: "block" } : { display: "none" }}
       >
-        <RightHome />
+        <Fade direction="right">
+          <RightHome />
+        </Fade>
       </StyledRight>
     </StyledHome>
   );
