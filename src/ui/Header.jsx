@@ -1,3 +1,4 @@
+import { Fade } from "react-awesome-reveal";
 import styled from "styled-components";
 
 const StyledHeader = styled.header`
@@ -12,7 +13,9 @@ const StyledHeader = styled.header`
 function Header() {
   return (
     <StyledHeader>
-      <p>Robify</p>
+      <Fade delay={1000} direction="down" triggerOnce>
+        <p>Robify</p>
+      </Fade>
     </StyledHeader>
   );
 }
