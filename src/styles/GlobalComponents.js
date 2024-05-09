@@ -73,6 +73,29 @@ p{
       font-size: 56.25%;
     }
   }
+  @media screen and (max-width: 65em) {
+    h1{
+  font-size: 3.6rem;
+  font-weight: 500;
+}
+
+h2{
+  font-size: 2.8rem;
+}
+
+h3{
+  font-size: 2.4rem;
+}
+
+h4{
+  font-size: 2rem;
+}
+
+p{
+  font-size: 1.6rem;
+}
+
+  }
   @media screen and (max-width: 50em) {
     html{
       font-size: 50%;

@@ -4,7 +4,7 @@ import { useSongId } from "../SongIdContext";
 const SongBox = styled.div`
   cursor: pointer;
   display: grid;
-  grid-template-columns: 15fr 90fr;
+  grid-template-columns: 10fr 90fr;
   align-items: center;
   gap: 3.2rem;
   padding: 1.2rem;
@@ -13,12 +13,25 @@ const SongBox = styled.div`
   &:hover {
     background-color: var(--component-hover-color);
   }
+  @media screen and (max-width: 65em) {
+    grid-template-columns: 20fr 80fr;
+    gap: 0.8rem;
+  }
 `;
 
 const NumList = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 50fr);
   align-items: center;
+`;
+
+const H2 = styled.h2`
+  @media screen and (max-width: 65em) {
+    display: none;
+  }
+  @media screen and (max-width: 50em) {
+    display: block;
+  }
 `;
 
 const IMG = styled.img`
@@ -34,7 +47,7 @@ function SongsList({ song, index }) {
   return (
     <SongBox onClick={handleId}>
       <NumList>
-        <h2>{index + 1}</h2>
+        <H2>{index + 1}</H2>
         <IMG src={song.image} alt="screenshot of original track or author" />
       </NumList>
 

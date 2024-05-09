@@ -12,6 +12,7 @@ const HomeInfo = styled.div`
   @media screen and (max-width: 65em) {
     display: grid;
     grid-template-columns: 1fr;
+    padding: 0.8rem;
   }
 `;
 
@@ -40,6 +41,7 @@ const PlaylistInfo = styled.div`
   padding: 1.2rem;
   @media screen and (max-width: 65em) {
     grid-row: 1;
+    padding: 0.8rem;
   }
 `;
 

@@ -6,6 +6,9 @@ const CompBG = styled.div`
   border-radius: 10px;
   overflow-y: auto;
   height: 80vh;
+  @media screen and (max-width: 50em) {
+    padding: 1.8rem;
+  }
 `;
 
 export default CompBG;
