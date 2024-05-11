@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import { useSongId } from "../SongIdContext";
+import { ScaleLoader } from "react-spinners";
+import { useState } from "react";
 
 const SongBox = styled.div`
   cursor: pointer;
@@ -40,14 +42,27 @@ const IMG = styled.img`
 `;
 
 function SongsList({ song, index }) {
-  const { isId } = useSongId();
+  const { isId, songId } = useSongId();
+  const [activeSong, setActiveSong] = useState(false);
   function handleId() {
     isId(song.id);
+    setActiveSong(true);
   }
   return (
-    <SongBox onClick={handleId}>
+    <SongBox
+      className={
+        songId.songId === song.id ? "active-song song-box" : "song-box"
+      }
+      onClick={handleId}
+    >
       <NumList>
-        <H2>{index + 1}</H2>
+        {songId.songId === song.id && activeSong ? (
+          <div>
+            <ScaleLoader color="var(--font-color)" />
+          </div>
+        ) : (
+          <H2>{index + 1}</H2>
+        )}
         <IMG src={song.image} alt="screenshot of original track or author" />
       </NumList>
 

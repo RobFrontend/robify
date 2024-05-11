@@ -45,6 +45,14 @@ p{
   font-size: 1.8rem;
 }
 
+.song-box{
+
+}
+
+.active-song{
+  background-color: var(--component-hover-color);
+}
+
 /* ===== Scrollbar CSS ===== */
   /* Firefox */
   * {
@@ -55,7 +63,6 @@ p{
   /* Chrome, Edge, and Safari */
   *::-webkit-scrollbar {
     width: 16px;
-
   }
 
   *::-webkit-scrollbar-track {
