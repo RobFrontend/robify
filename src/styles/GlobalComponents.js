@@ -53,6 +53,10 @@ p{
   background-color: var(--component-hover-color);
 }
 
+.player {
+  position: absolute;
+}
+
 /* ===== Scrollbar CSS ===== */
   /* Firefox */
   * {
