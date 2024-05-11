@@ -66,7 +66,7 @@ const OpenLeft = styled.div`
   padding: 0.8rem 1.2rem;
   border-radius: 50px;
   background-color: var(--player-backgorund-color);
-  @media screen and (min-width: 50em) {
+  @media screen and (min-width: 801px) {
     display: none;
   }
 `;
@@ -80,7 +80,7 @@ const OpenRight = styled.div`
   padding: 0.8rem 1.2rem;
   border-radius: 50px;
   background-color: var(--player-backgorund-color);
-  @media screen and (min-width: 50em) {
+  @media screen and (min-width: 801px) {
     display: none;
   }
 `;
