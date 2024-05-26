@@ -2,6 +2,8 @@ import styled from "styled-components";
 import { useSongs } from "../queryAPI/useSongs";
 import { useSongId } from "../components/SongIdContext";
 import { Fade } from "react-awesome-reveal";
+import ReactAudioPlayer from "react-audio-player";
+import { useEffect, useRef, useState } from "react";
 
 const StyledPlayer = styled.div`
   position: relative;
@@ -28,6 +30,13 @@ const Audio = styled.audio`
     width: 90%;
   }
 `;
+const RAudio = styled(ReactAudioPlayer)`
+  width: 80%;
+  height: 3vh;
+  @media screen and (max-width: 50em) {
+    width: 90%;
+  }
+`;
 
 const Background = styled.img`
   position: absolute;
@@ -42,7 +51,6 @@ const Background = styled.img`
 function Player() {
   const { songId } = useSongId();
   let { songs, isPending } = useSongs();
-
   const currentSong = songs?.find((song) => song.id === songId.songId);
 
   if (isPending) return <h3>Loading</h3>;
@@ -53,6 +61,8 @@ function Player() {
         <Background src={currentSong.image} />
 
         <Fade direction="up" triggerOnce>
+          <p>{currentSong.title}</p>
+
           <PlayerBox>
             {songs
               .filter((song) => song.id === songId.songId)
@@ -67,16 +77,62 @@ function Player() {
 }
 
 function SongPlaying({ song, index }) {
+  const [playerVolume, setPlayerVolume] = useState(1.0);
+  const audioRef = useRef();
+
+  // const handleVolumeChange = () => {
+  //   setPlayerVolume(audioRef.current.volume);
+  // };
+  // return (
+  //   <>
+  //     {/* <p>{song.title}</p>
+  //     <Audio
+  //       controlsList="nodownload noplaybackrate"
+  //       controls
+  //       autoPlay
+  //       src={song.audio}
+  //     /> */}
+  //     <RAudio
+  //       ref={audioRef}
+  //       src={song.audio}
+  //       controlsList="nodownload noplaybackrate"
+  //       autoPlay
+  //       controls
+  //       volume={playerVolume}
+  //       onVolumeChange={handleVolumeChange}
+  //     />
+  //   </>
+  // );
+  useEffect(() => {
+    // Ensure the audio element volume is synced with the playerVolume state
+    if (audioRef.current) {
+      audioRef.current.audioEl.current.volume = playerVolume;
+    }
+  }, [playerVolume]);
+
+  useEffect(() => {
+    const handleVolumeChange = (event) => {
+      setPlayerVolume(event.target.volume);
+    };
+
+    const audioElement = audioRef.current && audioRef.current.audioEl.current;
+    if (audioElement) {
+      audioElement.addEventListener("volumechange", handleVolumeChange);
+      return () => {
+        audioElement.removeEventListener("volumechange", handleVolumeChange);
+      };
+    }
+  }, []);
+
   return (
-    <>
-      <p>{song.title}</p>
-      <Audio
-        controlsList="nodownload noplaybackrate"
-        controls
-        autoPlay
-        src={song.audio}
-      />
-    </>
+    <ReactAudioPlayer
+      ref={audioRef}
+      src={song.audio}
+      controlsList="nodownload noplaybackrate"
+      autoPlay
+      controls
+      volume={playerVolume}
+    />
   );
 }
 
