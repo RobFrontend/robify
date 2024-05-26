@@ -61,8 +61,6 @@ function Player() {
         <Background src={currentSong.image} />
 
         <Fade direction="up" triggerOnce>
-          <p>{currentSong.title}</p>
-
           <PlayerBox>
             {songs
               .filter((song) => song.id === songId.songId)
@@ -77,62 +75,23 @@ function Player() {
 }
 
 function SongPlaying({ song, index }) {
-  const [playerVolume, setPlayerVolume] = useState(1.0);
-  const audioRef = useRef();
-
-  // const handleVolumeChange = () => {
-  //   setPlayerVolume(audioRef.current.volume);
-  // };
-  // return (
-  //   <>
-  //     {/* <p>{song.title}</p>
-  //     <Audio
-  //       controlsList="nodownload noplaybackrate"
-  //       controls
-  //       autoPlay
-  //       src={song.audio}
-  //     /> */}
-  //     <RAudio
-  //       ref={audioRef}
-  //       src={song.audio}
-  //       controlsList="nodownload noplaybackrate"
-  //       autoPlay
-  //       controls
-  //       volume={playerVolume}
-  //       onVolumeChange={handleVolumeChange}
-  //     />
-  //   </>
-  // );
-  useEffect(() => {
-    // Ensure the audio element volume is synced with the playerVolume state
-    if (audioRef.current) {
-      audioRef.current.audioEl.current.volume = playerVolume;
-    }
-  }, [playerVolume]);
-
-  useEffect(() => {
-    const handleVolumeChange = (event) => {
-      setPlayerVolume(event.target.volume);
-    };
-
-    const audioElement = audioRef.current && audioRef.current.audioEl.current;
-    if (audioElement) {
-      audioElement.addEventListener("volumechange", handleVolumeChange);
-      return () => {
-        audioElement.removeEventListener("volumechange", handleVolumeChange);
-      };
-    }
-  }, []);
-
   return (
-    <ReactAudioPlayer
-      ref={audioRef}
-      src={song.audio}
-      controlsList="nodownload noplaybackrate"
-      autoPlay
-      controls
-      volume={playerVolume}
-    />
+    <>
+      {/* <p>{song.title}</p>
+      <Audio
+        controlsList="nodownload noplaybackrate"
+        controls
+        autoPlay
+        src={song.audio}
+      /> */}
+      <p>{song.title}</p>
+      <RAudio
+        src={song.audio}
+        controlsList="nodownload noplaybackrate"
+        autoPlay
+        controls
+      />
+    </>
   );
 }
 
